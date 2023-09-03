@@ -28,6 +28,7 @@ function Copyright(props: any) {
 // TODO remove, this demo shouldn't need to reset the theme.
 
 export default function Login() {
+  const router = useRouter();
   const defaultTheme = createTheme();
   useEffect(() => {
     if (typeof localStorage !== "undefined") {
@@ -40,7 +41,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const router = useRouter();
+
   const handleSubmit = async (e) => {
     event.preventDefault();
     if (password === "" || email === "") {
