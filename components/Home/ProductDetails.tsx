@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 
 const ProductDetails = () => {
   const [mainImage, setMainImage] = useState("https://i.imgur.com/TAzli1U.jpg");
@@ -14,53 +15,59 @@ const ProductDetails = () => {
           <div className="col-md-6 border-end">
             <div className="d-flex flex-column justify-content-center">
               <div className="main_image">
-                <img
+                <Image
                   src={mainImage}
-                  id="main_product_image"
-                  width="350"
                   alt="Main Product"
+                  placeholder="blur"
+                  blurDataURL="data:image/png;base64,..."
+                  width={350}
+                  height={300}
                 />
               </div>
               <div className="thumbnail_images">
                 <ul id="thumbnail">
                   <li>
-                    <img
+                    <Image
                       onClick={() =>
                         changeImage("https://i.imgur.com/TAzli1U.jpg")
                       }
                       src="https://i.imgur.com/TAzli1U.jpg"
-                      width="70"
-                      alt="Thumbnail 1"
+                      alt="Main Product"
+                      width={70}
+                      height={50}
                     />
                   </li>
                   <li>
-                    <img
+                    <Image
                       onClick={() =>
                         changeImage("https://i.imgur.com/w6kEctd.jpg")
                       }
                       src="https://i.imgur.com/w6kEctd.jpg"
-                      width="70"
                       alt="Thumbnail 2"
+                      width={70}
+                      height={50}
                     />
                   </li>
                   <li>
-                    <img
+                    <Image
                       onClick={() =>
                         changeImage("https://i.imgur.com/L7hFD8X.jpg")
                       }
                       src="https://i.imgur.com/L7hFD8X.jpg"
-                      width="70"
                       alt="Thumbnail 3"
+                      width={70}
+                      height={50}
                     />
                   </li>
                   <li>
-                    <img
+                    <Image
                       onClick={() =>
                         changeImage("https://i.imgur.com/6ZufmNS.jpg")
                       }
                       src="https://i.imgur.com/6ZufmNS.jpg"
-                      width="70"
                       alt="Thumbnail 4"
+                      width={70}
+                      height={50}
                     />
                   </li>
                 </ul>
