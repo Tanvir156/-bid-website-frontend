@@ -256,7 +256,7 @@ export default function Header() {
                 <AccountCircle />
               </IconButton>
             ) : (
-              <Button variant="outline" onClick={login}>
+              <Button variant="outlined" onClick={login}>
                 Login
               </Button>
             )}
