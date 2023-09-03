@@ -37,7 +37,6 @@ function Carousell() {
             src={image.image}
             alt="Picture of the author"
             blurDataURL="data:..."
-            automatically
             provided
             placeholder="blur" // Optional blur-up while loading
             sizes="100vw"
