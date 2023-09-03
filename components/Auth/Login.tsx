@@ -29,18 +29,18 @@ function Copyright(props: any) {
 
 export default function Login() {
   const defaultTheme = createTheme();
- useEffect(() => {
+  useEffect(() => {
     if (typeof localStorage !== "undefined") {
       const userInfo = localStorage.getItem("userInfo");
       if (userInfo) {
-        router.push("/")
+        router.push("/");
       }
     }
-  }, []);
+  }, [router]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-    const router = useRouter();
+  const router = useRouter();
   const handleSubmit = async (e) => {
     event.preventDefault();
     if (password === "" || email === "") {
