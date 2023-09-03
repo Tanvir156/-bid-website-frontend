@@ -14,15 +14,15 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { createUser } from "./../../pages/api/users/register";
 function RegisterScreen({ history }) {
-    const router = useRouter();
+  const router = useRouter();
   useEffect(() => {
     if (typeof localStorage !== "undefined") {
       const userInfo = localStorage.getItem("userInfo");
       if (userInfo) {
-        router.push("/")
+        router.push("/");
       }
     }
-  }, []);
+  }, [router]);
   const theme = createTheme();
 
   const [email, setEmail] = useState("");
