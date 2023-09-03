@@ -27,8 +27,6 @@ export default function ProductCard({ product }) {
             src={product.image}
             alt={product.name}
             blurDataURL="data:..."
-            automatically
-            provided
             placeholder="blur"
           />
         </AspectRatio>
