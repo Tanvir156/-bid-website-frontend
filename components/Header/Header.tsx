@@ -274,7 +274,7 @@ export default function Header() {
                 <MoreIcon />
               </IconButton>
             ) : (
-              <Button variant="outline" onClick={login}>
+              <Button variant="outlined" onClick={login}>
                 Login
               </Button>
             )}
