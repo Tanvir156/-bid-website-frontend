@@ -1,8 +1,8 @@
 import React from "react";
-import { GetStaticPaths } from "next";
+import { getStaticPaths } from "next";
 
 import Login from "./../components/Auth/Login";
-const login = ({ history: any }) => {
+const login = ({ history }) => {
   return (
     <div>
       <Login />
