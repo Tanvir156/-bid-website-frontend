@@ -256,7 +256,11 @@ export default function Header() {
                 <AccountCircle />
               </IconButton>
             ) : (
-              <Button variant="outlined" onClick={login}>
+              <Button
+                variant="outlined"
+                onClick={login}
+                style={{ color: "white" }}
+              >
                 Login
               </Button>
             )}
@@ -274,7 +278,11 @@ export default function Header() {
                 <MoreIcon />
               </IconButton>
             ) : (
-              <Button variant="outlined" onClick={login}>
+              <Button
+                variant="outlined"
+                onClick={login}
+                style={{ color: "white" }}
+              >
                 Login
               </Button>
             )}
