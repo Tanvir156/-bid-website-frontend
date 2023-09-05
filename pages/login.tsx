@@ -1,5 +1,5 @@
 import React from "react";
-import { getStaticPaths } from "next";
+import { GetStaticPaths } from "next";
 
 import Login from "./../components/Auth/Login";
 const login = () => {
