@@ -14,19 +14,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { loginUser } from "./../../pages/api/users/login";
 import { useRouter } from "next/router";
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    ></Typography>
-  );
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
-
+import { Toaster, toast } from "react-hot-toast";
+import CircularProgress from "@mui/material/CircularProgress";
 export default function Login() {
   const router = useRouter();
   const defaultTheme = createTheme();
@@ -41,11 +30,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
+  const [loading,setLoading]=useState(false)
   const handleSubmit = async (e) => {
     event.preventDefault();
+    setLoading(true)
     if (password === "" || email === "") {
-      setMessage("Please provide required field");
+       toast.error("Fill required field");
+        setLoading(false)
     } else {
       try {
         const userData = {
@@ -54,20 +45,25 @@ export default function Login() {
         };
         const response = await loginUser(userData);
         localStorage.setItem("userInfo", JSON.stringify(response));
+        toast.success("Login Success");
+        setLoading(false)
         router.push("/");
       } catch (error) {
         console.error(error);
+        setLoading(false)
       }
     }
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
+        <Toaster position="top-center" reverseOrder={false} />
       <Container maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
             marginTop: 8,
+            marginBottom: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -117,13 +113,17 @@ export default function Login() {
               label="Remember me"
             />
             <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                disabled={loading}
+              >
+                {loading ? "Logging ..." : "Log In"}
+                {loading && (
+                  <CircularProgress size={24} sx={{ marginLeft: 2 }} />
+                )}
+              </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -138,7 +138,6 @@ export default function Login() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   );

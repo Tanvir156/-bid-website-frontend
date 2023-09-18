@@ -1,6 +1,6 @@
 import axios from "axios";
-
-const API_URL = "https://bid-website.onrender.com/api/users/login"; // Update with your API endpoint
+import config from "./../../../config";
+const API_URL = `${config.API_URL}/api/users/login`;
 export const loginUser = async (userData) => {
   try {
     const config = {

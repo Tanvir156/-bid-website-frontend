@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Carousell from "./Carousell";
 import ProductCard from "./ProductCard";
 import img1 from "./../../public/caro4.jpg";
@@ -15,6 +15,10 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useRouter } from "next/router";
+import config from "./../../config";
+const API_URL = `${config.API_URL}/api/products/productlist`;
+
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 const ITEM_HEIGHT = 48;
@@ -36,8 +40,11 @@ function getStyles(name, personName, theme) {
         : theme.typography.fontWeightMedium,
   };
 }
-const Home = () => {
+
+const Home = ({ products }) => {
   const theme = useTheme();
+  const router = useRouter();
+
   const [personName, setPersonName] = React.useState([]);
   const handleChange = (event) => {
     const {
@@ -48,127 +55,12 @@ const Home = () => {
       typeof value === "string" ? value.split(",") : value
     );
   };
-  const products = [
-    {
-      id: 1,
-      name: "Bluetooth Headset",
-      image: img1,
-      price: "2,900",
-      catagories: "mobile accessories",
-      stock: 7,
-    },
-    {
-      id: 2,
-      name: "earphone",
-      image: img1,
-      price: "2,900",
-      catagories: "mobile accessories",
-      stock: 7,
-    },
-    {
-      id: 3,
-      name: "realme phone",
-      image: img1,
-      price: "2,900",
-      catagories: "mobile",
-      stock: 7,
-    },
-    {
-      id: 4,
-      name: "hp laptop",
-      image: img1,
-      price: "2,900",
-      catagories: "laptop",
-      stock: 7,
-    },
-    {
-      id: 5,
-      name: "phonix cycle",
-      image: img1,
-      price: "2,900",
-      catagories: "cycle",
-      stock: 7,
-    },
-    {
-      id: 6,
-      name: "keyboard",
-      image: img1,
-      price: "2,900",
-      catagories: "comuter accessory",
-      stock: 7,
-    },
-    {
-      id: 7,
-      name: "calculator",
-      image: img1,
-      price: "2,900",
-      catagories: "others",
-      stock: 7,
-    },
-    {
-      id: 9,
-      name: "Shoe",
-      image: img1,
-      price: "2,900",
-      catagories: "shoe",
-      stock: 7,
-    },
-    {
-      id: 10,
-      name: "rail ticket",
-      image: img1,
-      price: "2,900",
-      catagories: "others",
-      stock: 7,
-    },
-    {
-      id: 11,
-      name: "mouse",
-      image: img1,
-      price: "2,900",
-      catagories: "computer accessory",
-      stock: 7,
-    },
-    {
-      id: 12,
-      name: "Iphone 11 pro",
-      image: img1,
-      price: "2,900",
-      catagories: "mobile",
-      stock: 7,
-    },
-    {
-      id: 13,
-      name: "asus laptop",
-      image: img1,
-      price: "2,900",
-      catagories: "laptop",
-      stock: 7,
-    },
-    {
-      id: 14,
-      name: "fan",
-      image: img1,
-      price: "2,900",
-      catagories: "elctric accessory",
-      stock: 7,
-    },
-    {
-      id: 15,
-      name: "Bluetooth Headset",
-      image: img1,
-      price: "2,900",
-      catagories: "mobile",
-      stock: 7,
-    },
-  ];
-
   const categories = Array.from(
-    new Set(products.map((product) => product.catagories))
+    new Set(products.map((product) => product.selectedCategory))
   );
   const productNames = products.map((product) => ({ title: product.name }));
   const filteredProductsByCategory = products.filter((product) => {
-    return personName.includes(product.catagories);
+    return personName.includes(product.selectedCategory);
   });
 
   const filteredProductsByName = products.filter((product) => {
@@ -178,7 +70,7 @@ const Home = () => {
   // Filtering based on selected product names and categories
   const filteredProducts = products.filter((product) => {
     const matchesCategory =
-      personName.length === 0 || personName.includes(product.catagories);
+      personName.length === 0 || personName.includes(product.selectedCategory);
     const matchesName =
       personName.length === 0 || personName.includes(product.name);
 
@@ -277,7 +169,7 @@ const Home = () => {
         <Container fluid>
           <Row xs={2} md={4} lg={5}>
             {currentProducts.map((product) => (
-              <Col key={product.id}>
+              <Col key={product._id}>
                 <ProductCard product={product} />
               </Col>
             ))}
