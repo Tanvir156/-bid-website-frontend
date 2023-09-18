@@ -6,6 +6,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import Link from "next/link";
 import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
@@ -82,6 +83,11 @@ export default function Header() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+  const handleProfile = () => {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+    router.push("/profile");
+  };
   const menuId = "primary-search-account-menu";
   const router = useRouter();
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -104,6 +110,7 @@ export default function Header() {
   const login = () => {
     router.push("/login");
   };
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -120,8 +127,8 @@ export default function Header() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleProfile}>Profile</MenuItem>
+
       <MenuItem onClick={logout}>Log Out</MenuItem>
     </Menu>
   );
@@ -173,7 +180,7 @@ export default function Header() {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Account</p>
       </MenuItem>
     </Menu>
   );
@@ -192,14 +199,18 @@ export default function Header() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Retronet Market
-          </Typography>
+          <Link href="/" style={{ color: "white", textDecoration: "none" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" } }}
+              style={{ cursor: "pointer" }}
+            >
+              Retronet Market
+            </Typography>
+          </Link>
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -209,21 +220,20 @@ export default function Header() {
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
-
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <MenuItem>
-              <DropdownButton id="dropdown-item-button" title="Catagories">
-                <Dropdown.Item as="button">Phone</Dropdown.Item>
-                <Dropdown.Item as="button">Television</Dropdown.Item>
-                <Dropdown.Item as="button">Laptop</Dropdown.Item>
-                <Dropdown.Item as="button">Charger</Dropdown.Item>
-                <Dropdown.Item as="button">Fan</Dropdown.Item>
-                <Dropdown.Item as="button">Ohters</Dropdown.Item>
-              </DropdownButton>
+            <MenuItem onClick={handleMenuClose}>
+              {isUserLoggedIn ? (
+                <Link href="/uploadproduct" className="link">
+                  Sell Products
+                </Link>
+              ) : (
+                <Link href="/login" className="link">
+                  Sell Products
+                </Link>
+              )}
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>About</MenuItem>
-            <MenuItem onClick={handleMenuClose}>Contact</MenuItem>
+            <MenuItem onClick={handleMenuClose}>My Products</MenuItem>
 
             <IconButton
               size="large"
@@ -295,16 +305,8 @@ export default function Header() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ListGroup variant="flush">
-            <ListGroup.Item>
-              <DropdownButton id="dropdown-item-button" title="Catagories">
-                <Dropdown.Item as="button">Phone</Dropdown.Item>
-                <Dropdown.Item as="button">Television</Dropdown.Item>
-                <Dropdown.Item as="button">Laptop</Dropdown.Item>
-                <Dropdown.Item as="button">Charger</Dropdown.Item>
-                <Dropdown.Item as="button">Fan</Dropdown.Item>
-                <Dropdown.Item as="button">Ohters</Dropdown.Item>
-              </DropdownButton>
-            </ListGroup.Item>
+            <ListGroup.Item>Sell Products</ListGroup.Item>
+            <ListGroup.Item>My Products</ListGroup.Item>
             <ListGroup.Item>Cart</ListGroup.Item>
             <ListGroup.Item>About us</ListGroup.Item>
             <ListGroup.Item>Contact</ListGroup.Item>

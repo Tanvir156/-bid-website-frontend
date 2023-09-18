@@ -1,0 +1,27 @@
+localstorage catch
+
+useEffect(() => {
+  // Check if the product data is already cached
+  const cachedProductData = localStorage.getItem(`product-${id}`);
+
+  if (cachedProductData) {
+    setProductData(JSON.parse(cachedProductData));
+  } else {
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        setProductData(data);
+        localStorage.setItem(`product-${id}`, JSON.stringify(data));
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }
+}, [id, API_URL]);
+
+
+github
+git config --global user.name "YOUR_GITHUB_USERNAME"
+git config --global user.email "YOUR_GITHUB_EMAIL_ADDRESS"
+
+git remote -v
+//new branch
+git checkout -b 2nd-update

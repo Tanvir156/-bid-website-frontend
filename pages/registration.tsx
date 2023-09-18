@@ -13,6 +13,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { createUser } from "./api/users/register";
+import { Toaster, toast } from "react-hot-toast";
+import CircularProgress from "@mui/material/CircularProgress";
 function Registration({ history }) {
   const router = useRouter();
   useEffect(() => {
@@ -53,11 +55,13 @@ function Registration({ history }) {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     if (password === "") {
-      setMessage("Please provide required field");
+      toast.error("Enter Password");
+      setLoading(false);
     } else if (password !== confirmpassword) {
-      setMessage("Passwords do not match");
+      toast.error("Password did not match");
+      setLoading(false);
     } else {
       try {
         const userData = {
@@ -67,9 +71,13 @@ function Registration({ history }) {
         };
         const response = await createUser(userData);
         localStorage.setItem("userInfo", JSON.stringify(response));
+        setLoading(false);
+        toast.success("Registration successful");
         router.push("/");
       } catch (error) {
         console.error(error);
+        toast.error("An Error occurred.Try agian ");
+        setLoading(false);
       }
     }
   };
@@ -78,6 +86,7 @@ function Registration({ history }) {
     <div>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs" className="googlestyle">
+          <Toaster position="top-center" reverseOrder={false} />
           <CssBaseline />
           <Box
             sx={{
@@ -161,9 +170,12 @@ function Registration({ history }) {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                disabled={loading} // Add the disabled attribute based on the loading state
+                disabled={loading}
               >
-                Sign Up
+                {loading ? "Signing Up..." : "Sign Up"}
+                {loading && (
+                  <CircularProgress size={24} sx={{ marginLeft: 2 }} />
+                )}
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item style={{ marginBottom: "20px" }}>

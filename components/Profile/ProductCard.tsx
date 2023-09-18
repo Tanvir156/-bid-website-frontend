@@ -10,7 +10,7 @@ import Typography from "@mui/joy/Typography";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import Image from "next/image";
 import { GetStaticPaths } from "next";
-export default function ProductCard({ product }) {
+export default function dataCard({ data }) {
   return (
     <Card
       sx={{
@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
       <CardOverflow>
         <AspectRatio sx={{ minWidth: 100 }}>
           <Image
-            src={product.images[0]}
+            src={data.images[0]}
             alt="image"
             fill
             object-fit="cover"
@@ -33,17 +33,9 @@ export default function ProductCard({ product }) {
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        {/* <Typography level="body-xs">{product.selectedCategory}</Typography> */}
-        <Link
-          href={`/product/${product._id}`}
-          fontWeight="md"
-          color="neutral"
-          textColor="text.primary"
-          overlay
-          // endDecorator={<ArrowOutwardIcon />}
-        >
-          {product.title}
-        </Link>
+        {/* <Typography level="body-xs">{data.selectedCategory}</Typography> */}
+
+        {data.title}
 
         <Typography
           level="title-lg"
@@ -51,19 +43,19 @@ export default function ProductCard({ product }) {
           color="neutral"
           endDecorator={
             <Chip component="span" size="sm" variant="soft" color="success">
-              {product.selectedDistric}
+              {data.selectedDistric}
             </Chip>
           }
         >
-          {product.price} tk
+          {data.price} tk
         </Typography>
         {/* <Typography level="body-sm">
-          (Only <b>{product.stock}</b> left in stock!)
+          (Only <b>{data.stock}</b> left in stock!)
         </Typography> */}
       </CardContent>
       <CardOverflow>
-        <Button variant="solid" color="primary" size="lg">
-          Bid Now
+        <Button variant="solid" color="danger" size="lg">
+          Delete
         </Button>
       </CardOverflow>
     </Card>
