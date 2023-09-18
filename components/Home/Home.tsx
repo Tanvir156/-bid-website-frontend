@@ -126,7 +126,6 @@ const Home = ({ products }) => {
               </MenuItem>
               {categories.map((category) => (
                 <MenuItem
-                  key={category.toString()}
                   value={category}
                   style={getStyles(category, personName, theme)}
                 >
