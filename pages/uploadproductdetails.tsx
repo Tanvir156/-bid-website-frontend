@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { GetStaticPaths } from "next";
 import ProductDetails from "./../components/UploadProduct/ProductDetails";
-const uploadproductdetails = () => {
+const Uploadproductdetails = () => {
   const router = useRouter();
   const {
     selectedCategory,
@@ -21,4 +21,4 @@ const uploadproductdetails = () => {
   );
 };
 
-export default uploadproductdetails;
+export default Uploadproductdetails;

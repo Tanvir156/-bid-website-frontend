@@ -11,7 +11,7 @@ import styles from "./../../styles/Home.module.css";
 import axios from "axios";
 import { SyncLoader } from "react-spinners";
 import { Toaster, toast } from "react-hot-toast";
-
+import Image from "next/image";
 const ProductDetails = ({
   selectedCategory,
   selectedSubcategory,
@@ -261,10 +261,12 @@ const ProductDetails = ({
               <div className={styles.imagess}>
                 {selectedImages.length > 0 &&
                   selectedImages.map((image, index) => (
-                    <img
+                    <Image
                       src={`${URL.createObjectURL(image)}`}
                       key={index}
                       alt=""
+                      width={100}
+                      height={100}
                     />
                   ))}
               </div>
