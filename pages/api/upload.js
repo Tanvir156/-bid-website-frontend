@@ -1,6 +1,5 @@
 import multer from "multer";
 const cloudinary = require("cloudinary").v2;
-require("dotenv").config();
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
