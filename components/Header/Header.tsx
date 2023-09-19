@@ -302,12 +302,12 @@ export default function Header() {
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title onClick={handleClose}>
-            <Link href="/" style={{ textDecoration: "none" }}>
+            <Link href="/" style={{ textDecoration: "none", color: "blue" }}>
               <Typography
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ display: { xs: "none", sm: "block" } }}
+                sx={{ display: { sm: "block" } }}
                 style={{ cursor: "pointer" }}
               >
                 Retronet Market
