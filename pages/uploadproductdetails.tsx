@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { GetStaticPaths } from "next";
-import ProductDetails from "./../components/UploadProduct/ProductDetails";
+import ProductDetails from "./../components/UploadProduct/ProductDetails.js";
 const Uploadproductdetails = () => {
   const router = useRouter();
   const {
