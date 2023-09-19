@@ -301,15 +301,32 @@ export default function Header() {
       </AppBar>
       <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Retronet Market</Offcanvas.Title>
+          <Offcanvas.Title onClick={handleClose}>
+            <Link href="/" style={{ textDecoration: "none" }}>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: "none", sm: "block" } }}
+                style={{ cursor: "pointer" }}
+              >
+                Retronet Market
+              </Typography>
+            </Link>
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ListGroup variant="flush">
-            <ListGroup.Item>
-              {" "}
-              <Link href="/uploadproduct" className="link">
-                Sell Products
-              </Link>
+            <ListGroup.Item onClick={handleClose}>
+              {isUserLoggedIn ? (
+                <Link href="/uploadproduct" style={{ textDecoration: "none" }}>
+                  Sell Products
+                </Link>
+              ) : (
+                <Link href="/login" style={{ textDecoration: "none" }}>
+                  Sell Products
+                </Link>
+              )}
             </ListGroup.Item>
             <ListGroup.Item>My Products</ListGroup.Item>
             <ListGroup.Item>Cart</ListGroup.Item>
