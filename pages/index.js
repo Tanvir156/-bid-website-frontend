@@ -2,7 +2,7 @@ import React from "react";
 import Home from "./../components/Home/Home.js";
 import config from "./../config";
 const API_URL = `${config.API_URL}/api/products/productlist`;
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const res = await fetch(API_URL);
   const product = await res.json();
   return { props: { product } };
