@@ -32,33 +32,37 @@ export default function ProductCard({ product }) {
           />
         </AspectRatio>
       </CardOverflow>
-      <CardContent>
-        {/* <Typography level="body-xs">{product.selectedCategory}</Typography> */}
-        <Link
-          href={`/product/${product._id}`}
-          color="neutral"
-          style={{ textDecoration: "none" }}
-          // endDecorator={<ArrowOutwardIcon />}
-        >
-          {product.title}
-        </Link>
+      <div style={{ height: "100px", display: "flex", alignItems: "center" }}>
+        <div>
+          <CardContent>
+            {/* <Typography level="body-xs">{product.selectedCategory}</Typography> */}
+            <Link
+              href={`/product/${product._id}`}
+              color="neutral"
+              style={{ textDecoration: "none" }}
+              // endDecorator={<ArrowOutwardIcon />}
+            >
+              {product.title}
+            </Link>
 
-        <Typography
-          level="title-lg"
-          fontWeight="bold"
-          color="neutral"
-          endDecorator={
-            <Chip component="span" size="sm" variant="soft" color="success">
-              {product.selectedDistric}
-            </Chip>
-          }
-        >
-          {product.price} tk
-        </Typography>
-        {/* <Typography level="body-sm">
+            <Typography
+              level="title-lg"
+              fontWeight="bold"
+              color="neutral"
+              endDecorator={
+                <Chip component="span" size="sm" variant="soft" color="success">
+                  {product.selectedDistric}
+                </Chip>
+              }
+            >
+              {product.price} tk
+            </Typography>
+            {/* <Typography level="body-sm">
           (Only <b>{product.stock}</b> left in stock!)
         </Typography> */}
-      </CardContent>
+          </CardContent>
+        </div>
+      </div>
       <CardOverflow>
         <Button variant="solid" color="primary" size="lg">
           Bid Now
