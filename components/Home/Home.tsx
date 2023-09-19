@@ -125,14 +125,13 @@ const Home = ({ products }) => {
                 <em>Select Category</em>
               </MenuItem>
               {categories.map((category) => (
-               <MenuItem
-                 key={category}
-                 value={category as string}
-                 style={getStyles(category as string, personName, theme)}
-               >
-                {category}
-               </MenuItem>
-
+                <MenuItem
+                  key={category as React.Key}
+                  value={category as string}
+                  style={getStyles(category as string, personName, theme)}
+                >
+                  {category}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
