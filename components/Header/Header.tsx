@@ -305,7 +305,12 @@ export default function Header() {
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ListGroup variant="flush">
-            <ListGroup.Item>Sell Products</ListGroup.Item>
+            <ListGroup.Item>
+              {" "}
+              <Link href="/uploadproduct" className="link">
+                Sell Products
+              </Link>
+            </ListGroup.Item>
             <ListGroup.Item>My Products</ListGroup.Item>
             <ListGroup.Item>Cart</ListGroup.Item>
             <ListGroup.Item>About us</ListGroup.Item>
