@@ -126,9 +126,9 @@ const Home = ({ products }) => {
               </MenuItem>
               {categories.map((category) => (
                 <MenuItem
-                  key={category as React.Key}
-                  value={category as string}
-                  style={getStyles(category as string, personName, theme)}
+                  key={category}
+                  value={category}
+                  style={getStyles(category, personName, theme)}
                 >
                   {category}
                 </MenuItem>
