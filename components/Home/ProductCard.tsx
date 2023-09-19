@@ -36,7 +36,6 @@ export default function ProductCard({ product }) {
         {/* <Typography level="body-xs">{product.selectedCategory}</Typography> */}
         <Link
           href={`/product/${product._id}`}
-          fontWeight="md"
           color="neutral"
           textColor="text.primary"
           overlay
@@ -47,7 +46,7 @@ export default function ProductCard({ product }) {
 
         <Typography
           level="title-lg"
-          fontWeight="md"
+          fontWeight="bold"
           color="neutral"
           endDecorator={
             <Chip component="span" size="sm" variant="soft" color="success">
