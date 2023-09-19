@@ -37,7 +37,6 @@ export default function ProductCard({ product }) {
         <Link
           href={`/product/${product._id}`}
           color="neutral"
-          textColor="text.primary"
           overlay
           // endDecorator={<ArrowOutwardIcon />}
         >
