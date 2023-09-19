@@ -30,13 +30,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
     event.preventDefault();
-    setLoading(true)
+    setLoading(true);
     if (password === "" || email === "") {
-       toast.error("Fill required field");
-        setLoading(false)
+      toast.error("Fill required field");
+      setLoading(false);
     } else {
       try {
         const userData = {
@@ -46,18 +46,19 @@ export default function Login() {
         const response = await loginUser(userData);
         localStorage.setItem("userInfo", JSON.stringify(response));
         toast.success("Login Success");
-        setLoading(false)
+        setLoading(false);
         router.push("/");
       } catch (error) {
         console.error(error);
-        setLoading(false)
+        toast.error("Wrong Password");
+        setLoading(false);
       }
     }
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
-        <Toaster position="top-center" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <Container maxWidth="xs">
         <CssBaseline />
         <Box
@@ -113,17 +114,15 @@ export default function Login() {
               label="Remember me"
             />
             <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                disabled={loading}
-              >
-                {loading ? "Logging ..." : "Log In"}
-                {loading && (
-                  <CircularProgress size={24} sx={{ marginLeft: 2 }} />
-                )}
-              </Button>
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              disabled={loading}
+            >
+              {loading ? "Logging ..." : "Log In"}
+              {loading && <CircularProgress size={24} sx={{ marginLeft: 2 }} />}
+            </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
